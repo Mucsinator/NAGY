@@ -1,0 +1,38 @@
+SSH beállítása
+(a zölddel írt szövegek helyére a konkrét paramétereket kell írni)
+
+Alapeset: a telnet és az ssh szerver program is fut a háttérben, DE bejelentkezni az alapbeállítások alapján még nem lehet.
+
+A Telnethez szükséges: vty jelszó és „login” beállítása, ez után már működik.
+
+Az ssh-hoz szükséges: hostnév, domain név beállítása, kulcs generálása. Ez után egy üzenetben tudatja az ssh-szerver, hogy mostantól kapcsolatokat is tud fogadni.
+
+A transport input parancs alapesetben telnet és ssh kapcsolatot is enged (transport input all), csak akkor kell külön használni, ha csak az egyiket szeretnénk engedélyezni.
+
+Felhasználó létrehozása egyikhez sem szükséges, ekkor a vty után megadott password-del lehet bejelentezni. A PT-ben levő PC-ken levő ssh kliensprogram –l paraméterrel felhasználónevet ilyenkor is kér, de bármit elfogad.
+
+login local után már csak a létrehozott felhasználóval lehet belépni (line console és line vty után egyaránt használható).
+
+Router>enable
+Router#configure terminal
+Router(config)#hostname Teszt
+Teszt(config)#ip domain-name example.com
+Teszt(config)#crypto key generate rsa
+(a kérdésre adjunk meg egy méretet, ajánlott legalább 1024)
+Teszt(config)#line vty 0 15
+Teszt(config-line)#transport input ssh
+Teszt(config-line)#exit
+Teszt(config)#exit
+Teszt#
+=beállít hosztnevet, domain nevet, generál titkosítási kulcsot, majd a 0..15 vty vonalakon engedélyezi az ssh-t (és letiltja a telnetet)
+
+Teszt(config)#ip ssh version 2
+=alapesetben az ssh 1.99-es verzióval indul, 2-es verziójúra átváltani ezzel a paranccsal lehet. ez után már újabb rendszerüzenetet nem fogunk kapni.
+
+Teszt(config)#username Bob privilege 15 secret asd
+Teszt(config)#line vty 0 15
+Teszt(config-line)#login local
+Teszt(config-line)#exit
+Teszt(config)#exit
+
+=létrehoz egy Bob nevű felhasználót maximális jogokkal, „asd” titkosítva tárolt jelszóval, majd beállítja, hogy a virtuális terminál belépés ne a password-del megadott jelszót kérje, hanem a létrehozott felhasználókat engedje be és a megfelelő jogokkal léptesse be őket

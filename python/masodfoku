@@ -1,0 +1,45 @@
+
+# 1. féle
+
+a= float(input("Kérem az a együtthatót"))
+b= float(input("Kérem a b együtthatót"))
+c= float(input("Kérem a c együtthatót"))
+
+diszkriminans= b**2 - 4*a*c
+if diszkriminans==0:
+    print("Az egyenletnek egy megoldása van")
+elif diszkriminans <0:
+    print("Az egyenletnek nincs megoldása ")
+else:
+    print("Az egyenletnek két megoldása van")
+
+
+
+# 2. féle
+
+
+import math
+
+
+a= float(input("Kérem az a együtthatót"))
+b= float(input("Kérem a b együtthatót"))
+c= float(input("Kérem a c együtthatót"))
+
+diszkriminans= b**2 - 4*a*c
+if diszkriminans >0:
+    print("Az egyenletnek két megoldása van")
+elif diszkriminans <0:
+    print("Az egyenletnek nincs megoldása ")
+else:
+    print("Az egyenletnek egy megoldása van")
+
+if diszkriminans > 0:
+    eredmeny1= (-1*b + math.sqrt(diszkriminans))/2*a
+    eredmeny2= (-1*b - math.sqrt(diszkriminans))/2*a
+    print(f"A megoldások {eredmeny1, eredmeny2}")
+
+elif diszkriminans < 0:
+    print("Nincs megoldás")
+else:
+    eredmeny1 = (b-math.sqrt(diszkriminans))/2*a
+    print(f"Az egyenletnek egy megoldása van: {eredmeny1}")

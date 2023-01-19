@@ -1,0 +1,22 @@
+Netmask
+255.255.255.0 = 24             kiadható hálózatok: 254
+255.255.255.128 = 25            kiadható hálózatok:126
+ 255.255.255.192 = 26            kiadható hálózatok:62
+ 255.255.255.224 = 27            kiadható hálózatok:30
+255.255.255.240 = 28             kiadható hálózatok: 14
+255.255.255.248 = 29            kiadható hálózatok:6
+255.255.255.252 = 30             kiadható hálózatok:2
+255.255.255.254 = 31             kiadható hálózatok:0
+255.255.255.255 = 32             kiadható hálózatok:1
+
+
+255.255.254.0 = 23            kiadható hálózatok: 510
+255.255.252.0 = 22            kiadható hálózatok:1022
+255.255.248.0 = 21             kiadható hálózatok:2046
+255.255.240.0 = 20            kiadható hálózatok:4094
+
+
+
+Broadcast--> szórási cím
+HostMin: 1. kiadhato cím (router kapja)
+HostMax: utolsó kiadható
